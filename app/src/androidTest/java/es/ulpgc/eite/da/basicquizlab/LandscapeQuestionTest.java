@@ -13,7 +13,6 @@ import org.junit.Test;
 import org.junit.runner.RunWith;
 
 import static androidx.test.espresso.Espresso.onView;
-import static androidx.test.espresso.Espresso.pressBack;
 import static androidx.test.espresso.action.ViewActions.click;
 import static androidx.test.espresso.assertion.ViewAssertions.matches;
 import static androidx.test.espresso.matcher.ViewMatchers.withId;
@@ -28,68 +27,50 @@ public class LandscapeQuestionTest {
       new ActivityTestRule<>(QuestionActivity.class);
 
   @Test
-  public void lanscapeQuestionTest() {
+  public void landscapeQuestionInstrumentedTest() {
 
     // GIVEN
 
-    ViewInteraction textView17 = onView(withId(R.id.questionText));
-    textView17.check(matches(withText("Question #1: True")));
+    ViewInteraction textView = onView(withId(R.id.questionText));
+    textView.check(matches(withText("Question #1: True")));
 
-    ViewInteraction textView18 = onView(withId(R.id.replyText));
-    textView18.check(matches(withText("???")));
-
+    ViewInteraction textView2 = onView(withId(R.id.replyText));
+    textView2.check(matches(withText("???")));
 
     // WHEN
 
-    ViewInteraction appCompatButton = onView(withId(R.id.cheatButton));
+    ViewInteraction appCompatButton = onView(withId(R.id.trueButton));
     appCompatButton.perform(click());
 
     // THEN & GIVEN
 
-    ViewInteraction textView = onView(withId(R.id.warningText));
-    textView.check(matches(withText("Are you sure?")));
+    ViewInteraction textView3 = onView(withId(R.id.questionText));
+    textView3.check(matches(withText("Question #1: True")));
 
-    ViewInteraction textView2 = onView(withId(R.id.answerText));
-    textView2.check(matches(withText("???")));
+    ViewInteraction textView4 = onView(withId(R.id.replyText));
+    textView4.check(matches(withText("Correct")));
 
-    // ----------------------
-
-    // WHEN
-
-    ViewInteraction appCompatButton2 = onView(withId(R.id.yesButton));
-
-    appCompatButton2.perform(click());
-
-    // THEN & GIVEN
-
-    ViewInteraction textView3 = onView(withId(R.id.warningText));
-    textView3.check(matches(withText("Are you sure?")));
-
-    ViewInteraction textView4 = onView(withId(R.id.answerText));
-    textView4.check(matches(withText("True")));
-
-    // ----------------------
+    // ---------------------
 
     // WHEN
 
     mActivityTestRule.getActivity()
         .setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_LANDSCAPE);
 
-
     // THEN & GIVEN
 
-    ViewInteraction textView5 = onView(withId(R.id.warningText));
-    textView5.check(matches(withText("Are you sure?")));
+    ViewInteraction textView5 = onView(withId(R.id.questionText));
+    textView5.check(matches(withText("Question #1: True")));
 
-    ViewInteraction textView6 = onView(withId(R.id.answerText));
-    textView6.check(matches(withText("True")));
+    ViewInteraction textView6 = onView(withId(R.id.replyText));
+    textView6.check(matches(withText("Correct")));
 
-    // ----------------------
+    // ---------------------
 
     // WHEN
 
-    pressBack();
-
+    ViewInteraction appCompatButton2 = onView(withId(R.id.nextButton));
+    appCompatButton2.perform(click());
 
     // THEN & GIVEN
 
@@ -98,6 +79,22 @@ public class LandscapeQuestionTest {
 
     ViewInteraction textView8 = onView(withId(R.id.replyText));
     textView8.check(matches(withText("???")));
+
+    // ---------------------
+
+    // WHEN
+
+    mActivityTestRule.getActivity()
+        .setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
+
+
+    // THEN
+
+    ViewInteraction textView9 = onView(withId(R.id.questionText));
+    textView9.check(matches(withText("Question #2: False")));
+
+    ViewInteraction textView10 = onView(withId(R.id.replyText));
+    textView10.check(matches(withText("???")));
   }
 
 
