@@ -123,24 +123,29 @@ public class QuestionActivity extends AppCompatActivity {
         trueButtonClicked();
     }
 
+    updateLayoutContent();
+
     nextButtonEnabled = true;
   }
+
 
   private void trueButtonClicked() {
 
     if(replyArray[questionIndex] == 1) {
-      replyText.setText(R.string.correct_text);
+      currentReply=getString(R.string.correct_text);
     } else {
-      replyText.setText(R.string.incorrect_text);
+      currentReply=getString(R.string.incorrect_text);
     }
+
+
   }
 
   private void falseButtonClicked() {
 
     if(replyArray[questionIndex] == 0) {
-      replyText.setText(R.string.correct_text);
+      currentReply=getString(R.string.correct_text);
     } else {
-      replyText.setText(R.string.incorrect_text);
+      currentReply=getString(R.string.incorrect_text);
     }
 
   }
