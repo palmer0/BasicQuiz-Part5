@@ -21,7 +21,7 @@ import static androidx.test.espresso.matcher.ViewMatchers.withText;
 
 @LargeTest
 @RunWith(AndroidJUnit4.class)
-public class QuizExtraTest {
+public class ExtraQuizTest {
 
   @Rule
   public ActivityTestRule<QuestionActivity> mActivityTestRule =
