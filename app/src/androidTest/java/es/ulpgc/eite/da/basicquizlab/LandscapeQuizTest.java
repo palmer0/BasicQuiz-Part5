@@ -1,12 +1,13 @@
 package es.ulpgc.eite.da.basicquizlab;
 
 
-import android.content.pm.ActivityInfo;
+import android.os.RemoteException;
 
 import androidx.test.espresso.ViewInteraction;
 import androidx.test.filters.LargeTest;
 import androidx.test.rule.ActivityTestRule;
 import androidx.test.runner.AndroidJUnit4;
+import androidx.test.uiautomator.UiDevice;
 
 import org.junit.Rule;
 import org.junit.Test;
@@ -18,6 +19,7 @@ import static androidx.test.espresso.action.ViewActions.click;
 import static androidx.test.espresso.assertion.ViewAssertions.matches;
 import static androidx.test.espresso.matcher.ViewMatchers.withId;
 import static androidx.test.espresso.matcher.ViewMatchers.withText;
+import static androidx.test.platform.app.InstrumentationRegistry.getInstrumentation;
 
 @LargeTest
 @RunWith(AndroidJUnit4.class)
@@ -27,7 +29,7 @@ public class LandscapeQuizTest {
   public ActivityTestRule<QuestionActivity> mActivityTestRule =
       new ActivityTestRule<>(QuestionActivity.class);
 
-  @Test
+  //@Test
   public void landscapeQuestionTest() {
 
     // GIVEN
@@ -55,8 +57,20 @@ public class LandscapeQuizTest {
 
     // WHEN
 
+
+    try {
+      UiDevice device = UiDevice.getInstance(getInstrumentation());
+      device.setOrientationLeft();
+
+    } catch (RemoteException e) {
+      e.printStackTrace();
+    }
+
+    /*
     mActivityTestRule.getActivity()
         .setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_LANDSCAPE);
+
+    */
 
     // THEN & GIVEN
 
@@ -85,9 +99,18 @@ public class LandscapeQuizTest {
 
     // WHEN
 
+    try {
+      UiDevice device = UiDevice.getInstance(getInstrumentation());
+      device.setOrientationNatural();
+
+    } catch (RemoteException e) {
+      e.printStackTrace();
+    }
+
+    /*
     mActivityTestRule.getActivity()
         .setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
-
+    */
 
     // THEN
 
@@ -144,8 +167,23 @@ public class LandscapeQuizTest {
 
     // WHEN
 
+    try {
+
+      Thread.sleep(2000);
+
+      UiDevice device = UiDevice.getInstance(getInstrumentation());
+      device.setOrientationLeft();
+
+      Thread.sleep(2000);
+
+    } catch (Exception e) {
+      e.printStackTrace();
+    }
+
+    /*
     mActivityTestRule.getActivity()
         .setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_LANDSCAPE);
+    */
 
 
     // THEN & GIVEN
@@ -160,6 +198,20 @@ public class LandscapeQuizTest {
 
     // WHEN
 
+    try {
+
+      Thread.sleep(2000);
+
+      UiDevice device = UiDevice.getInstance(getInstrumentation());
+      device.setOrientationNatural();
+
+      Thread.sleep(2000);
+
+    } catch (Exception e) {
+      e.printStackTrace();
+    }
+
+
     pressBack();
 
 
@@ -170,6 +222,14 @@ public class LandscapeQuizTest {
 
     ViewInteraction textView8 = onView(withId(R.id.replyText));
     textView8.check(matches(withText("???")));
+
+    try {
+
+      Thread.sleep(2000);
+
+    } catch (Exception e) {
+      e.printStackTrace();
+    }
   }
 
 

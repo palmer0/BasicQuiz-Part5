@@ -1,12 +1,11 @@
 package es.ulpgc.eite.da.basicquizlab;
 
 
-import android.content.pm.ActivityInfo;
-
 import androidx.test.espresso.ViewInteraction;
 import androidx.test.filters.LargeTest;
 import androidx.test.rule.ActivityTestRule;
 import androidx.test.runner.AndroidJUnit4;
+import androidx.test.uiautomator.UiDevice;
 
 import org.junit.Rule;
 import org.junit.Test;
@@ -18,6 +17,7 @@ import static androidx.test.espresso.action.ViewActions.click;
 import static androidx.test.espresso.assertion.ViewAssertions.matches;
 import static androidx.test.espresso.matcher.ViewMatchers.withId;
 import static androidx.test.espresso.matcher.ViewMatchers.withText;
+import static androidx.test.platform.app.InstrumentationRegistry.getInstrumentation;
 
 @LargeTest
 @RunWith(AndroidJUnit4.class)
@@ -56,8 +56,24 @@ public class ExtraQuizTest {
     appCompatButton4.perform(click());
 
 
+    try {
+
+      Thread.sleep(2000);
+
+      UiDevice device = UiDevice.getInstance(getInstrumentation());
+      device.setOrientationLeft();
+
+      Thread.sleep(2000);
+
+    } catch (Exception e) {
+      e.printStackTrace();
+    }
+
+    /*
     mActivityTestRule.getActivity()
         .setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_LANDSCAPE);
+    */
+
 
     //ViewInteraction textView3 = onView(withId(R.id.answerText));
     //textView3.check(matches(withText("False")));
@@ -68,8 +84,23 @@ public class ExtraQuizTest {
     pressBack();
 
 
+    try {
+
+      Thread.sleep(2000);
+
+      UiDevice device = UiDevice.getInstance(getInstrumentation());
+      device.setOrientationNatural();
+
+      Thread.sleep(2000);
+
+    } catch (Exception e) {
+      e.printStackTrace();
+    }
+
+    /*
     mActivityTestRule.getActivity()
         .setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
+    */
 
     //ViewInteraction textView4 = onView(withId(R.id.answerText));
     //textView4.check(matches(withText("False")));
@@ -85,16 +116,17 @@ public class ExtraQuizTest {
     ViewInteraction textView6 = onView(withId(R.id.replyText));
     textView6.check(matches(withText("???")));
 
-  }
-
-
-  private void delayTest(long secs) {
 
     try {
-      Thread.sleep(secs*1000);
-    } catch (InterruptedException e) {
+
+      Thread.sleep(2000);
+
+    } catch (Exception e) {
       e.printStackTrace();
     }
+
+
   }
+
 
 }
