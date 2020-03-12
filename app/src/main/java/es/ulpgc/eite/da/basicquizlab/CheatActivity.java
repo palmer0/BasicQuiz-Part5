@@ -32,6 +32,8 @@ public class CheatActivity extends AppCompatActivity {
 
     getSupportActionBar().setTitle(R.string.cheat_title);
 
+    Log.d(TAG, "onCreate()");
+
     initLayoutData();
 
     linkLayoutComponents();
