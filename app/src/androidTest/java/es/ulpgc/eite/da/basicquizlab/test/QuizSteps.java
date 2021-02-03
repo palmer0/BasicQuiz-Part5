@@ -78,12 +78,21 @@ public class QuizSteps {
 
   @And("^ocultar resultado$")
   public void ocultarResultado() {
-    //onView(withId(R.id.questionText)).check(matches(not(isDisplayed())));
+    //onView(withId(R.id.replyText)).check(matches(not(isDisplayed())));
     onView(withId(R.id.replyText)).check(matches(isDisplayed()));
     //onView(withId(R.id.replyText)).check(matches(withText("???")));
     onView(withId(R.id.replyText))
       .check(matches(withText(activity.getString(R.string.empty_text))));
   }
+
+  @And("^ocultar respuesta$")
+  public void ocultarRespuesta() {
+    onView(withId(R.id.answerText)).check(matches(isDisplayed()));
+    //onView(withId(R.id.answerText)).check(matches(withText("???")));
+    onView(withId(R.id.answerText))
+        .check(matches(withText(activity.getString(R.string.empty_text))));
+  }
+
 
   @And("^mostrar botones True y False y Cheat activados$")
   public void mostrarBotonesTrueYFalseYCheatActivados() {
