@@ -3,7 +3,6 @@ package es.ulpgc.eite.da.basicquizlab;
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
-import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
 
@@ -35,7 +34,6 @@ public class CheatActivity extends AppCompatActivity {
     Log.d(TAG, "onCreate()");
 
     initLayoutData();
-
     linkLayoutComponents();
     initLayoutContent();
 
@@ -47,6 +45,8 @@ public class CheatActivity extends AppCompatActivity {
         updateLayoutContent();
       }
     }
+
+    enableLayoutButtons();
   }
 
   @Override
@@ -77,6 +77,12 @@ public class CheatActivity extends AppCompatActivity {
 
   private void initLayoutData() {
     currentAnswer = getIntent().getExtras().getInt(EXTRA_ANSWER);
+  }
+
+  private void enableLayoutButtons() {
+
+    noButton.setOnClickListener(v -> onNoButtonClicked());
+    yesButton.setOnClickListener(v -> onYesButtonClicked());
   }
 
   private void linkLayoutComponents() {
@@ -114,21 +120,25 @@ public class CheatActivity extends AppCompatActivity {
     returnCheatedStatus();
   }
 
-  public void onButtonClick(View view) {
+
+//  public void onButtonClick(View view) {
+//    yesButton.setEnabled(false);
+//    noButton.setEnabled(false);
+//
+//    switch (view.getId()) {
+//      case R.id.noButton:
+//        onNoButtonClicked();
+//        break;
+//      case R.id.yesButton:
+//        onYesButtonClicked();
+//    }
+//
+//  }
+
+
+  private void onYesButtonClicked() {
     yesButton.setEnabled(false);
     noButton.setEnabled(false);
-
-    switch (view.getId()) {
-      case R.id.noButton:
-        noButtonClicked();
-        break;
-      case R.id.yesButton:
-        yesButtonClicked();
-    }
-
-  }
-
-  private void yesButtonClicked() {
     answerCheated = true;
     updateLayoutContent();
   }
@@ -143,7 +153,10 @@ public class CheatActivity extends AppCompatActivity {
     }
   }
 
-  private void noButtonClicked() {
+  private void onNoButtonClicked() {
+    yesButton.setEnabled(false);
+    noButton.setEnabled(false);
+
     returnCheatedStatus();
   }
 
