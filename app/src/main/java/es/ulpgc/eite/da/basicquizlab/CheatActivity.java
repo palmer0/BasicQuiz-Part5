@@ -19,7 +19,7 @@ public class CheatActivity extends AppCompatActivity {
   public final static String KEY_CHEATED = "KEY_CHEATED";
 
   private Button noButton, yesButton;
-  private TextView warningText, answerText;
+  private TextView answerText;
 
   private int currentAnswer;
   private boolean answerCheated;
@@ -35,7 +35,6 @@ public class CheatActivity extends AppCompatActivity {
 
     initLayoutData();
     linkLayoutComponents();
-    initLayoutContent();
 
     if(savedInstanceState != null) {
       currentAnswer = savedInstanceState.getInt(KEY_ANSWER);
@@ -89,17 +88,9 @@ public class CheatActivity extends AppCompatActivity {
     noButton = findViewById(R.id.noButton);
     yesButton = findViewById(R.id.yesButton);
 
-    warningText = findViewById(R.id.warningText);
     answerText = findViewById(R.id.answerText);
   }
 
-  private void initLayoutContent() {
-    noButton.setText(R.string.no_button_text);
-    yesButton.setText(R.string.yes_button_text);
-
-    warningText.setText(R.string.warning_text);
-    answerText.setText(R.string.empty_text);
-  }
 
   private void returnCheatedStatus() {
     Log.d(TAG, "returnCheatedStatus()");
@@ -119,21 +110,6 @@ public class CheatActivity extends AppCompatActivity {
 
     returnCheatedStatus();
   }
-
-
-//  public void onButtonClick(View view) {
-//    yesButton.setEnabled(false);
-//    noButton.setEnabled(false);
-//
-//    switch (view.getId()) {
-//      case R.id.noButton:
-//        onNoButtonClicked();
-//        break;
-//      case R.id.yesButton:
-//        onYesButtonClicked();
-//    }
-//
-//  }
 
 
   private void onYesButtonClicked() {
